@@ -25,7 +25,7 @@ Open `http://localhost:4173`.
 
 The page follows the system color preference until a visitor chooses a theme. CSS and JavaScript animations respect reduced motion. Native disclosures keep the long archive readable even without JavaScript.
 
-The June 2026 "Now" update is archived, and submission statuses are explicitly dated. Update these when new information is available; the redesign does not infer acceptance decisions.
+The June 2026 "Now" update is archived. Publications reflect the October 2026 résumé, with the accepted CapGaze title and four authors confirmed from the attached manuscript. Under-review entries use broad topic labels and omit identifying metadata and materials. Do not upload the private résumé or review manuscripts.
 
 The interactive map uses standard OpenStreetMap tiles with visible attribution and normal browser caching. It requests tiles when the map enters the viewport. The conference list remains available if the map cannot load. See the [tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
 
