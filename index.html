@@ -1,889 +1,244 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Majd Khalaf</title>
-<meta name="description" content="Majd Khalaf, Ph.D. student in Computer Engineering at Northeastern University (SINRG), researching wearable computing, wireless sensing, and spatial intelligence.">
-<link rel="icon" type="image/png" href="majd.png">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Majd Khalaf">
-<meta property="og:description" content="Ph.D. student in Computer Engineering at Northeastern (SINRG). Wearable computing, wireless sensing, and spatial intelligence.">
+<meta content="Majd Khalaf, Ph.D. student in Computer Engineering at Northeastern University (SINRG), researching wearable computing, wireless sensing, and spatial intelligence." name="description"/>
+<link href="majd.png" rel="icon" type="image/png"/>
+<meta content="website" property="og:type"/>
+<meta content="Majd Khalaf" property="og:title"/>
+<meta content="Ph.D. student in Computer Engineering at Northeastern (SINRG). Wearable computing, wireless sensing, and spatial intelligence." property="og:description"/>
 <!-- og:image should be an absolute URL once deployed, e.g. https://yourdomain/majd.png -->
-<meta property="og:image" content="majd.png">
-<meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>(function(){try{var s=localStorage.getItem('theme');var d=s?s==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --text:#222;
-  --muted:#555;
-  --faint:#888;
-  --link:#0b5ed7;
-  --link-h:#06388a;
-  --rule:#e4e4e4;
-  --badge-bg:#eaf1fb;
-  --badge-bd:#c5d8f3;
-  --review-bg:#fbf0e7;
-  --review-bd:#eed3bb;
-  --review-tx:#a85e22;
-  --bg:#fff;
-  --bg-soft:#f6f7f9;
-  --nav-bg:rgba(255,255,255,.92);
-  --maxw:820px;
-}
-html[data-theme="dark"]{
-  --text:#e6e8ec;
-  --muted:#aab0bb;
-  --faint:#7c828d;
-  --link:#5b9bff;
-  --link-h:#8fbaff;
-  --rule:#2a2e37;
-  --badge-bg:#18243c;
-  --badge-bd:#2b3f63;
-  --review-bg:#2c2117;
-  --review-bd:#4b3722;
-  --review-tx:#d59c66;
-  --bg:#14161b;
-  --bg-soft:#1d2027;
-  --nav-bg:rgba(20,22,27,.9);
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--text);background:var(--bg);transition:background .3s,color .3s;line-height:1.7;font-size:18px;font-weight:400;overflow-x:clip}
-a{color:var(--link);text-decoration:none}
-a:hover{color:var(--link-h);text-decoration:underline}
-::selection{background:var(--badge-bd)}
-:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:3px}
-::-webkit-scrollbar{width:11px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--rule);border-radius:6px;border:3px solid var(--bg)}
-::-webkit-scrollbar-thumb:hover{background:var(--faint)}
-
-/* nav */
-nav{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
-.nav-in{max-width:var(--maxw);margin:0 auto;padding:.55rem 1.5rem;display:flex;flex-wrap:wrap;gap:.25rem;align-items:center}
-.nav-name{font-weight:700;margin-right:auto;font-size:1.05rem}
-.nav-in a{color:var(--muted);font-size:.92rem;font-weight:600;text-decoration:none;padding:.42rem .8rem;border-radius:8px;transition:color .2s,background .2s}
-.nav-in a:hover{color:var(--link);background:var(--bg-soft);text-decoration:none}
-.nav-in a.active{color:var(--link);background:var(--badge-bg)}
-.nav-name a{padding:.42rem 0;background:none!important;color:var(--text)}
-.nav-name a:hover{color:var(--link)}
-
-main{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
-
-/* header */
-.head{display:flex;gap:2.2rem;align-items:flex-start;padding:3rem 0 2.4rem;position:relative}
-.head::before{content:'';position:absolute;left:-12vw;right:-12vw;top:-1rem;bottom:0;background-image:radial-gradient(var(--rule) 1px,transparent 1px);background-size:21px 21px;opacity:.55;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent);z-index:-1}
-.head-photo{width:178px;flex-shrink:0;position:relative}
-.head-photo::before{content:'';position:absolute;inset:-9px;border-radius:50%;border:1px solid var(--link);opacity:.25}
-.head-photo::after{content:'';position:absolute;inset:-16px;border-radius:50%;border:1px solid var(--rule);opacity:.6}
-.head-photo img{width:178px;height:178px;border-radius:50%;object-fit:cover;object-position:center 18%;border:1px solid var(--rule);position:relative;z-index:1}
-.head-body h1{font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:700;line-height:1.12;margin-bottom:.4rem;letter-spacing:-.01em}
-.head-role{font-size:1.15rem;color:var(--text);margin-bottom:.15rem}
-.head-aff{color:var(--muted);font-size:1.05rem;margin-bottom:.2rem}
-.head-aff a{font-weight:700}
-.head-advisor{color:var(--muted);font-size:1.02rem;margin-bottom:1rem}
-.links{display:flex;flex-wrap:wrap;gap:.4rem .9rem;font-size:.92rem}
-.links a{display:inline-flex;align-items:center;gap:.35rem;color:var(--link)}
-.links a::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--link);opacity:.55}
-.links a.ico::before{display:none}
-.links a.ico{opacity:.85;transition:opacity .2s,transform .2s}
-.links a.ico:hover{opacity:1;text-decoration:none;transform:translateY(-1px)}
-.links a.ico svg{width:20px;height:20px;fill:currentColor;display:block}
-
-/* sections */
-section{padding:2rem 0;border-top:1px solid var(--rule)}
-h2.sec{font-family:'Montserrat',sans-serif;font-size:1.85rem;font-weight:700;margin-bottom:1.2rem;scroll-margin-top:5rem;display:flex;align-items:center;gap:.8rem;letter-spacing:-.01em}
-h2.sec::after{content:'';flex:1;height:1px;background:var(--rule);margin-left:.4rem}
-p{margin-bottom:.9rem}
-p:last-child{margin-bottom:0}
-.muted{color:var(--muted)}
-
-/* news */
-.news{list-style:none}
-.news li{display:grid;grid-template-columns:96px 1fr;gap:1rem;font-size:1.02rem;align-items:baseline}
-.news .nd{color:var(--faint);font-size:.85rem;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums;padding-top:.45rem}
-.news .nt{position:relative;border-left:1px solid var(--rule);padding:.45rem 0 .45rem 1.15rem}
-.news .nt::before{content:'';position:absolute;left:-4.5px;top:.95rem;width:8px;height:8px;border-radius:50%;background:var(--bg);border:2px solid var(--link);transition:background .2s}
-.news li:hover .nt::before{background:var(--link)}
-.news .nt strong{font-weight:700}
-.newsmore{display:block;margin:1rem 0 0 calc(96px + 1rem);font-family:'Open Sans',sans-serif;font-size:.82rem;font-weight:700;padding:.4rem 1.1rem;border:1px solid var(--rule);background:none;color:var(--muted);border-radius:100px;cursor:pointer;transition:color .2s,border-color .2s}
-.newsmore:hover{color:var(--link);border-color:var(--link)}
-
-/* research */
-.research p{margin-bottom:.7rem}
-.rlist{list-style:none}
-.rlist li{padding:.35rem 0 .35rem 1.2rem;position:relative;color:var(--muted)}
-.rlist li::before{content:'▸';position:absolute;left:0;color:var(--link)}
-.rlist b{color:var(--text);font-weight:700}
-
-/* publications */
-.pub-sub{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:1.3rem 0 .7rem}
-.pub-sub:first-child{margin-top:0}
-.pub{display:grid;grid-template-columns:360px 1fr;gap:1.7rem;padding:1.4rem 0;align-items:start}
-.thumb{width:360px;height:244px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;border:1px solid rgba(0,0,0,.06);overflow:hidden;text-align:center;padding:.5rem}
-.thumb .tv{font-size:.72rem;font-weight:700;letter-spacing:.03em}
-.thumb .tt{font-size:.56rem;opacity:.85;margin-top:.2rem;line-height:1.25}
-.thumb.has-img{padding:0;background:var(--bg)}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.th1{background:linear-gradient(135deg,#1f6f8b,#0f4c5c)}
-.th2{background:linear-gradient(135deg,#3a5a98,#22386b)}
-.th3{background:linear-gradient(135deg,#6a7b8c,#414f5e)}
-.th4{background:linear-gradient(135deg,#7a8a5a,#4e5a38)}
-.th5{background:linear-gradient(135deg,#9a6a4a,#6e4a30)}
-.th6{background:linear-gradient(135deg,#7a5a8a,#4e3a5e)}
-.pub-t{font-weight:700;line-height:1.4;margin-bottom:.2rem;font-size:1.14rem}
-.pub-a{color:var(--muted);font-size:.98rem;margin-bottom:.15rem}
-.pub-a .me{color:var(--text);font-weight:700}
-.pub-v{font-size:.95rem;color:var(--muted)}
-.pub-v i{color:var(--text);font-style:italic}
-.badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.08rem .5rem;border-radius:4px;margin-left:.4rem;vertical-align:middle;letter-spacing:.02em}
-.badge.b{background:var(--badge-bg);border:1px solid var(--badge-bd);color:var(--link)}
-.badge.r{background:var(--review-bg);border:1px solid var(--review-bd);color:var(--review-tx)}
-.pub-links{margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
-.pub-links a,.pub-links .bib>summary{font-size:.74rem;font-weight:700;letter-spacing:.02em;padding:.24rem .62rem;border:1px solid var(--badge-bd);background:var(--badge-bg);color:var(--link);border-radius:5px;text-decoration:none;cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:.3rem;transition:background .2s,border-color .2s,color .2s}
-.pub-links a:hover,.pub-links .bib>summary:hover{background:var(--link);color:#fff;border-color:var(--link);text-decoration:none}
-.pub-links .bib>summary::-webkit-details-marker{display:none}
-.pub-links .bib[open]>summary{background:var(--link);color:#fff;border-color:var(--link)}
-.pub-links .bib[open]{flex-basis:100%}
-.pub-links .req{color:var(--review-tx);background:var(--review-bg);border-color:var(--review-bd)}
-.pub-links .req:hover{background:var(--review-tx);color:#fff;border-color:var(--review-tx)}
-.bibbox{position:relative;margin-top:.5rem;background:var(--bg-soft);border:1px solid var(--rule);border-radius:6px;padding:2rem .9rem .8rem;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;line-height:1.55;color:var(--text);white-space:pre-wrap;overflow-x:auto}
-/* animations */
-.reveal{opacity:0;transform:translateY(10px);transition:opacity .45s ease-out,transform .45s ease-out}
-.reveal.in{opacity:1;transform:none}
-.head{animation:headIn .75s cubic-bezier(.22,1,.36,1) both}
-@keyframes headIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.thumb.has-img img{transition:transform .4s ease}
-.pub:hover .thumb.has-img img{transform:scale(1.02)}
-@media(prefers-reduced-motion:reduce){.reveal,.head,.head-photo::before,.lb.open img,.now-live::before,.caret,.pin-dot{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}.head-photo::before{opacity:.4!important}.pin-dot{opacity:1!important;transform:scale(1)!important}}
-/* theme toggle */
-.theme-btn{margin-left:.2rem;background:none;border:1px solid var(--rule);border-radius:7px;width:34px;height:30px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);transition:color .2s,border-color .2s;flex-shrink:0}
-.theme-btn:hover{color:var(--link);border-color:var(--link)}
-.theme-btn svg{width:16px;height:16px;fill:currentColor;display:block}
-.theme-btn .moon{display:none}
-html[data-theme="dark"] .theme-btn .sun{display:none}
-html[data-theme="dark"] .theme-btn .moon{display:block}
-/* copy buttons */
-.copybtn{font-family:'Open Sans',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.2rem .5rem;border:1px solid var(--badge-bd);background:var(--badge-bg);color:var(--link);border-radius:4px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
-.copybtn:hover{background:var(--link);color:#fff;border-color:var(--link)}
-/* lightbox */
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.86);display:none;align-items:center;justify-content:center;z-index:300;cursor:zoom-out;padding:3vw}
-.lb.open{display:flex}
-.lb img{max-width:94%;max-height:94%;border-radius:8px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
-.lb-close{position:absolute;top:.8rem;right:1.2rem;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer;background:none;border:none;opacity:.85}
-.lb-close:hover{opacity:1}
-.thumb.has-img img{cursor:zoom-in}
-/* conference map */
-#confmap{height:380px;width:100%;border:1px solid var(--rule);border-radius:8px;margin-bottom:.5rem;z-index:1}
-.confmap-note{font-size:.8rem;color:var(--faint);margin-bottom:1.4rem}
-.leaflet-popup-content{font-family:'Open Sans',sans-serif;font-size:.84rem;line-height:1.5;margin:.7rem .9rem}
-.leaflet-popup-content b{font-family:'Montserrat',sans-serif;font-size:.95rem}
-/* progress bar + back-to-top */
-#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--link);z-index:200;transition:width .1s linear}
-#toTop{position:fixed;right:1.4rem;bottom:1.4rem;width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);background:var(--bg);color:var(--link);font-size:1.25rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .3s,transform .3s,background .2s,color .2s;box-shadow:0 6px 20px rgba(0,0,0,.14);z-index:200}
-#toTop.show{opacity:1;pointer-events:auto;transform:none}
-#toTop:hover{border-color:var(--link);color:#fff;background:var(--link)}
-/* news category tags */
-.ntag{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.6rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-left:.65rem;vertical-align:middle;white-space:nowrap}
-/* publication filter tabs */
-.pubtabs{position:relative;display:flex;gap:1.7rem;margin:0 0 1.4rem;border-bottom:1px solid var(--rule)}
-.ptab{font-family:'Open Sans',sans-serif;font-size:.86rem;font-weight:700;letter-spacing:.01em;padding:.5rem .12rem;border:0;background:none;color:var(--muted);cursor:pointer;transition:color .2s;white-space:nowrap}
-.ptab:hover{color:var(--link)}
-.ptab.active{color:var(--link)}
-.ptab-ind{position:absolute;bottom:-1px;left:0;width:0;height:2px;background:var(--link);border-radius:2px;transition:left .32s cubic-bezier(.4,0,.2,1),width .32s cubic-bezier(.4,0,.2,1);pointer-events:none}
-
-/* education / experience */
-.entry{display:grid;grid-template-columns:1fr auto;gap:.6rem 1.5rem;padding:.7rem .7rem;margin:0 -.7rem;border-bottom:1px dashed var(--rule);border-radius:8px;position:relative;transition:background .25s}
-.entry::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:0;background:var(--link);border-radius:2px;transition:height .25s ease}
-.entry:hover{background:var(--bg-soft)}
-.entry:hover::before{height:60%}
-.entry:last-child{border-bottom:none}
-.entry .e-main b{font-weight:700}
-.entry .e-sub{color:var(--muted);font-size:1rem}
-.entry .e-adv{color:var(--muted);font-size:.96rem}
-.entry .e-date{color:var(--faint);font-size:.9rem;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
-
-/* honors */
-.honors{list-style:none}
-.honors li{padding:.3rem 0 .3rem 1.4rem;position:relative;color:var(--text)}
-.honors li::before{content:'🏅';position:absolute;left:0;font-size:.9rem}
-.honors .hy{color:var(--faint);font-size:.88rem;margin-left:.3rem}
-
-/* skills */
-.skills{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2rem}
-.skill-label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);margin-bottom:.35rem}
-.chip{display:inline-block;font-size:.79rem;padding:.17rem .62rem;border:1px solid var(--rule);border-radius:100px;background:var(--bg-soft);color:var(--muted);margin:.12rem .2rem .12rem 0;transition:border-color .2s,color .2s,transform .2s}
-.chip:hover{border-color:var(--link);color:var(--link);transform:translateY(-1px)}
-
-footer{border-top:1px solid var(--rule);padding:2rem 0 2.8rem;font-size:.85rem;color:var(--faint);text-align:center}
-footer a{color:var(--link)}
-.foot-mono{font-family:'Montserrat',sans-serif;font-weight:600;font-size:1rem;width:40px;height:40px;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;color:var(--link)}
-.foot-sub{margin-top:.3rem;font-size:.75rem}
-
-/* lightbox entrance */
-.lb.open img{animation:lbIn .28s cubic-bezier(.22,1,.36,1)}
-@keyframes lbIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
-/* thumb lift */
-.pub .thumb{transition:box-shadow .35s ease,transform .35s ease}
-.pub:hover .thumb{box-shadow:0 14px 36px rgba(0,0,0,.14)}
-/* theme icon */
-.theme-btn svg{transition:transform .45s cubic-bezier(.22,1,.36,1)}
-.theme-btn:active svg{transform:rotate(60deg) scale(.9)}
-
-/* header live canvas */
-#headfx{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.45}
-
-/* hero typing line */
-.head-type{font-size:.95rem;color:var(--muted);margin-bottom:1rem;min-height:1.6em}
-.head-type #typed{color:var(--link);font-weight:700}
-.caret{display:inline-block;width:2px;height:1em;background:var(--link);margin-left:2px;vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-
-/* now section */
-.now-card{position:relative;background:var(--bg-soft);border:1px solid var(--rule);border-radius:10px;padding:1.2rem 1.4rem 1rem}
-.now-live{display:inline-flex;align-items:center;gap:.45rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
-.now-live::before{content:'';width:8px;height:8px;border-radius:50%;background:#2eaf64;animation:pulse 2s ease infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,175,100,.45)}70%{box-shadow:0 0 0 8px rgba(46,175,100,0)}100%{box-shadow:0 0 0 0 rgba(46,175,100,0)}}
-.now-card ul{list-style:none}
-.now-card li{padding:.25rem 0 .25rem 1.2rem;position:relative;font-size:.96rem;color:var(--text)}
-.now-card li::before{content:'▸';position:absolute;left:0;color:var(--link)}
-.now-upd{margin-top:.7rem;font-size:.74rem;color:var(--faint)}
-
-/* lab gallery */
-.gallery{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
-.gallery figure{margin:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--bg-soft);transition:box-shadow .3s,transform .3s}
-.gallery figure:hover{box-shadow:0 10px 26px rgba(0,0,0,.1);transform:translateY(-2px)}
-.gallery img{width:100%;height:215px;object-fit:cover;display:block;cursor:zoom-in;transition:transform .4s ease}
-.gallery figure:hover img{transform:scale(1.02)}
-.gallery figcaption{font-size:.88rem;color:var(--muted);padding:.6rem .85rem;line-height:1.5}
-
-/* notes */
-.note{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.85rem .2rem;border-bottom:1px dashed var(--rule);transition:padding-left .2s}
-.note:hover{padding-left:.6rem}
-.note:last-child{border-bottom:none}
-.note-t{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:600}
-.note-m{font-size:.76rem;color:var(--faint);white-space:nowrap;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
-
-/* animated map pins */
-.pin-wrap{background:none;border:none}
-.pin-dot{width:14px;height:14px;border-radius:50%;background:var(--link);border:2px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35);opacity:0;transform:scale(0)}
-.pin-dot.go{animation:pinDrop .4s ease-out forwards}
-@keyframes pinDrop{from{opacity:0;transform:translateY(-8px) scale(.6)}to{opacity:1;transform:translateY(0) scale(1)}}
-
-/* gaze easter egg */
-#gaze{position:fixed;left:0;top:0;width:28px;height:28px;border:2px solid var(--link);border-radius:50%;pointer-events:none;z-index:240;opacity:0;transition:opacity .25s;transform:translate(-50%,-50%)}
-#gaze.on{opacity:.55}
-#gaze::after{content:'';position:absolute;left:50%;top:50%;width:4px;height:4px;border-radius:50%;background:var(--link);transform:translate(-50%,-50%)}
-#toast{position:fixed;bottom:1.5rem;left:50%;transform:translate(-50%,10px);background:var(--text);color:var(--bg);padding:.55rem 1rem;border-radius:8px;font-size:.82rem;font-weight:700;opacity:0;transition:opacity .3s,transform .3s;z-index:260;pointer-events:none;white-space:nowrap}
-#toast.show{opacity:1;transform:translate(-50%,0)}
-
-@media print{
-  nav,#progress,#toTop,#confmap,.confmap-note,.pubtabs,.copybtn,.theme-btn,.lb,.newsmore,.thumb,.pub-links .bib,#gaze,#toast,#headfx,.caret{display:none!important}
-  body{font-size:11.5pt;background:#fff;color:#000}
-  .pub{grid-template-columns:1fr}
-  a{color:#000;text-decoration:none}
-  section,.entry,.pub{break-inside:avoid}
-  .news li{display:block}
-  .news .nt{border-left:none;padding:.15rem 0}
-  .news .nt::before{display:none}
-  .reveal{opacity:1!important;transform:none!important}
-}
-
-@media(max-width:640px){
-  body{font-size:17px}
-  .nav-in{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-  .nav-in::-webkit-scrollbar{display:none}
-  .head{flex-direction:column;align-items:center;text-align:center;gap:1.3rem;padding:2.2rem 0 1.8rem}
-  .links{justify-content:center}
-  .news li{grid-template-columns:1fr;gap:.1rem}
-  .news .nd{font-size:.8rem}
-  .pub{grid-template-columns:1fr;gap:.7rem}
-  .thumb{width:100%;height:270px}
-  .entry{grid-template-columns:1fr}
-  .entry .e-date{text-align:left}
-  .skills{grid-template-columns:1fr}
-  .newsmore{margin-left:0}
-  .news .nd{padding-top:.45rem}
-  h2.sec::after{display:none}
-  .gallery{grid-template-columns:1fr}
-}
-</style>
+<meta content="https://mkhalaf0.github.io/majd.png" property="og:image"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="light dark" name="color-scheme"/>
+<link href="https://mkhalaf0.github.io/" rel="canonical"/>
+<link as="font" crossorigin="" href="assets/fonts/manrope-regular.ttf" rel="preload" type="font/ttf"/>
+<link href="assets/vendor/leaflet.css" rel="stylesheet"/>
+<link href="styles.css?v=20261012-publications" rel="stylesheet"/>
+<script src="theme.js"></script>
+<script defer="" src="assets/vendor/leaflet.js"></script>
+<script defer="" src="conference-data.js"></script>
+<script defer="" src="script.js"></script>
 </head>
-<body>
-
-<div id="progress"></div>
-<nav>
-  <div class="nav-in">
-    <span class="nav-name"><a href="#top">Majd Khalaf</a></span>
-    <a href="#about">About</a>
-    <a href="#news">News</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
-    <a href="#conferences">Conferences</a>
-    <a href="#lab">Lab</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#honors">Honors</a>
-    <a href="#notes">Notes</a>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5a1 1 0 011 1v2a1 1 0 11-2 0V3a1 1 0 011-1zm0 16a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1zM5.64 5.64a1 1 0 011.42 0l1.4 1.41A1 1 0 116.04 8.46l-1.4-1.4a1 1 0 010-1.42zm10.9 10.9a1 1 0 011.42 0l1.4 1.4a1 1 0 11-1.42 1.42l-1.4-1.4a1 1 0 010-1.42zM2 12a1 1 0 011-1h2a1 1 0 110 2H3a1 1 0 01-1-1zm17 0a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1zM5.64 18.36a1 1 0 010-1.42l1.4-1.4a1 1 0 111.42 1.42l-1.4 1.4a1 1 0 01-1.42 0zm10.9-10.9a1 1 0 010-1.42l1.4-1.4a1 1 0 111.42 1.42l-1.4 1.4a1 1 0 01-1.42 0z"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg></button>
-  </div>
-</nav>
-
+<body><a class="skip-link" href="#about">Skip to content</a>
+<nav aria-label="Main navigation"><div class="nav-in">
+<a class="nav-name" href="#top">Majd Khalaf</a>
+<div class="nav-primary"><a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a></div>
+<details class="nav-more"><summary>More <span aria-hidden="true">+</span></summary><div class="nav-menu">
+<a class="mobile-only" href="#about">About</a><a class="mobile-only" href="#research">Research</a><a class="mobile-only" href="#publications">Publications</a>
+<a href="#news">News</a><a href="#conferences">Conferences</a><a href="#lab">Lab</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#honors">Honors</a><a href="#notes">Notes</a><a href="#skills">Technical Skills</a>
+</div></details><button aria-label="Switch to light mode" class="theme-btn" id="themeBtn" type="button">Light</button>
+</div></nav>
 <main id="top">
-
-  <header class="head">
-    <canvas id="headfx" aria-hidden="true"></canvas>
-    <div class="head-photo"><img src="majd.png" alt="Majd Khalaf"></div>
-    <div class="head-body">
-      <h1>Majd Khalaf</h1>
-      <div class="head-role">Ph.D. Student, Computer Engineering</div>
-      <div class="head-aff"><a href="https://sinrg.org/" target="_blank">SINRG</a> · Northeastern University</div>
-      <div class="head-advisor">Advised by <a href="https://mallesham.com/" target="_blank">Prof. Mallesham Dasari</a></div>
-      <div class="head-type">I work on <span id="typed"></span><span class="caret" aria-hidden="true"></span></div>
-      <div class="links">
-        <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a>
-        <button class="copybtn" type="button" data-copy="khalaf.m@northeastern.edu" title="Copy email">Copy</button>
-        <a class="ico" href="https://scholar.google.com/citations?user=mO5VtjEAAAAJ&hl=en" target="_blank" aria-label="Google Scholar" title="Google Scholar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg></a>
-        <a class="ico" href="https://www.linkedin.com/in/majd-khalaf-b3313222a/" target="_blank" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
-        <a href="https://sinrg.org/" target="_blank">Lab</a>
-        <a href="Resume_Khalaf_Majd_06_10_2026.pdf" target="_blank">CV</a>
-      </div>
-    </div>
-  </header>
-
-  <section id="about">
-    <h2 class="sec">About</h2>
-    <p>I am a Ph.D. student in Computer Engineering at Northeastern University, working in the <a href="https://sinrg.org/" target="_blank">Spatial Intelligence Research Group (SINRG)</a> with <a href="https://mallesham.com/" target="_blank">Prof. Mallesham Dasari</a>. My research is at the intersection of <b>wearable computing</b> and <b>wireless sensing</b>, with a broad interest in <b>spatial intelligence</b>: building systems that help everyday devices understand and interact with the physical world around them.</p>
-    <p>I enjoy working across the full stack, from hardware and embedded systems to wireless networking, signal processing, and machine learning. I am especially drawn to problems where careful systems design can make intelligent sensing practical on small, low-power devices, and to applications that have real impact on people.</p>
-    <p>Before my Ph.D., I earned a B.S. in Electrical &amp; Computer Engineering from Norwich University (minors in Mathematics and Computer Science), where I was named Student Engineer of the Year and served as President of Eta Kappa Nu.</p>
-    <p>I am always open to new research collaborations. If our interests overlap, feel free to reach out at <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a>.</p>
-  </section>
-
-  <section id="now">
-    <h2 class="sec">Now</h2>
-    <div class="now-card">
-      <div class="now-live">Currently</div>
-      <ul>
-        <li>Preparing my poster for <b>AWE USA 2026</b> in Long Beach (June 15 to 18).</li>
-        <li>Building the next <b>wearable sensing prototype</b> in the SINRG lab.</li>
-        <li>Awaiting reviews on my <b>ACM MobiCom 2026</b> and <b>ACM SenSys 2026</b> submissions.</li>
-      </ul>
-      <div class="now-upd">Updated June 2026</div>
-    </div>
-  </section>
-
-  <section id="news">
-    <h2 class="sec">News</h2>
-    <ul class="news">
-      <li><span class="nd">Jul 2026</span><span class="nt">🥽 Attended the <strong>Human-Centered Immersive Perception Evaluation Workshop</strong> at <strong>Worcester Polytechnic Institute (WPI)</strong> — shared our <strong>SINRG</strong> work, learned about <strong>ARBot</strong> and <strong>SensorFlex</strong>, and discussed future collaborations in XR sensing, privacy, systems, and human-centered evaluation. Thanks to Prof. Tian Guo and the organizers!</span></li>
-      <li><span class="nd">Jun 2026</span><span class="nt">🕶️ Presenting a poster at <strong>AWE USA 2026</strong> (Augmented World Expo), the world's largest XR and spatial computing event, in Long Beach, CA.</span></li>
-      <li><span class="nd">May 2026</span><span class="nt">🔬 Submitted a paper on <strong>capacitive eye tracking</strong> for low-power smart glasses to <strong>ACM SenSys 2026</strong>.</span></li>
-      <li><span class="nd">Apr 2026</span><span class="nt">📡 Submitted a paper on <strong>multimodal traffic analysis</strong> in wearable XR / AI glasses to <strong>ACM MobiCom 2026</strong>.</span></li>
-      <li><span class="nd">Feb 2026</span><span class="nt">🎓 Presented a poster at the <strong>Northeastern COE PhD Research Expo 2026</strong>.</span></li>
-      <li><span class="nd">Oct 2025</span><span class="nt">📝 Submitted a paper on <strong>AI-assisted spatial awareness</strong> for accessibility to <strong>IEEE THMS</strong>.</span></li>
-      <li><span class="nd">Sep 2025</span><span class="nt">🎓 Started my <strong>Ph.D.</strong> in Computer Engineering at Northeastern, joining the <strong>SINRG</strong> lab.</span></li>
-      <li><span class="nd">Jul 2025</span><span class="nt">🛠️ Served as faculty and Resident Assistant at <strong>GIV Engineering</strong> (Governor's Institutes of Vermont), teaching high school students to build solar trackers.</span></li>
-      <li><span class="nd">May 2025</span><span class="nt">🎉 Graduated from <strong>Norwich University</strong> with a B.S. in Electrical &amp; Computer Engineering.</span></li>
-      <li><span class="nd">May 2025</span><span class="nt">🎤 Presented capstone project <strong>AI-VIS</strong> (AI for visually impaired individuals) at the <strong>Vermont Society of Engineers 112th Annual Meeting</strong>.</span></li>
-      <li><span class="nd">Feb 2025</span><span class="nt">🏅 Named <strong>Student Engineer of the Year</strong> at Norwich University.</span></li>
-      <li><span class="nd">Nov 2024</span><span class="nt">📄 Published work on <strong>NLP-based digital forensics</strong> in <i>Future Internet</i>.</span></li>
-      <li><span class="nd">Nov 2024</span><span class="nt">🎟️ Attended the <strong>IEEE-Eta Kappa Nu Student Leadership Conference</strong> in Charlotte, NC.</span></li>
-      <li><span class="nd">Oct 2024</span><span class="nt">🎤 Presented at the <strong>AESH Annual International Conference on Soils, Sediments, Water, and Energy</strong> at UMass Amherst.</span></li>
-      <li><span class="nd">Sep 2024</span><span class="nt">📊 Presented a poster at the <strong>Vermont AOT Research &amp; Innovation Symposium</strong> in Barre, VT.</span></li>
-      <li><span class="nd">Aug 2024</span><span class="nt">🎤 Presented at the <strong>AI Colloquium</strong> hosted by the Norwich University Applied Research Institute (NUARI).</span></li>
-      <li><span class="nd">Jun 2024</span><span class="nt">🎤 Presented at the <strong>15th Annual First-Year Engineering Experience (FYEE) Conference</strong> at Northeastern University.</span></li>
-      <li><span class="nd">May 2024</span><span class="nt">📊 Presented a poster at the <strong>MassDOT Transportation Innovation Conference</strong> at the DCU Center, Worcester, MA.</span></li>
-      <li><span class="nd">May 2024</span><span class="nt">🎟️ Attended the <strong>NEUTC (New England University Transportation Center) Symposium</strong> in Worcester, MA.</span></li>
-      <li><span class="nd">Apr 2024</span><span class="nt">🔋 Began as an <strong>Undergraduate Research Assistant</strong> at NEUTC, studying battery electric vehicle (BEV) adoption across Vermont.</span></li>
-      <li><span class="nd">Feb 2024</span><span class="nt">🎤 Presented at the <strong>Cybersecurity Research in Undergraduate Programs (CyRUP) Conference</strong> at Norwich University.</span></li>
-      <li><span class="nd">Nov 2022</span><span class="nt">📚 Began tutoring as a <strong>Peer Tutor</strong> at the NU Center for Academic Success and Achievement.</span></li>
-    </ul>
-  </section>
-
-  <section id="research">
-    <h2 class="sec">Research</h2>
-    <div class="research">
-      <p class="muted">I build low-power wearable and wireless sensing systems for spatial intelligence. My focus areas:</p>
-      <ul class="rlist">
-        <li><b>Wireless traffic in wearables.</b> Measuring and modeling how XR and AI glasses use the network, including traffic patterns, energy cost, and latency across BLE, Wi-Fi, and 5G, to inform system and protocol design.</li>
-        <li><b>Low-power wearable sensing.</b> Sensing modalities that fit a wearable's power envelope, including capacitive eye tracking that replaces always-on cameras for continuous, privacy-preserving spatial inference.</li>
-        <li><b>Edge streaming for XR.</b> Delivering spatially rich media (3D scenes, immersive content) under real network conditions using edge computation and adaptive algorithms.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="publications">
-    <h2 class="sec">Publications</h2>
-    <div class="pubtabs">
-      <button class="ptab active" type="button" data-f="all">All</button>
-      <button class="ptab" type="button" data-f="review">Under Review</button>
-      <button class="ptab" type="button" data-f="published">Published</button>
-      <span class="ptab-ind" aria-hidden="true"></span>
-    </div>
-
-    <div class="pub-sub">Preprints &amp; Under Review</div>
-
-    <div class="pub">
-      <div class="thumb th1"><span class="tv">SenSys '26</span><span class="tt">Capacitive Eye Tracking</span></div>
-      <div>
-        <div class="pub-t">Capacitive Eye Tracking for Low-Power Smart Glasses <span class="badge r">Under Review</span></div>
-        <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
-        <div class="pub-v"><i>Under submission</i> · ACM SenSys 2026</div>
-        <div class="pub-links"><a class="req" href="mailto:khalaf.m@northeastern.edu" title="Request a draft">✉ Draft on request: khalaf.m@northeastern.edu</a></div>
-      </div>
-    </div>
-
-    <div class="pub">
-      <div class="thumb th2"><span class="tv">MobiCom '26</span><span class="tt">XR Traffic Analysis</span></div>
-      <div>
-        <div class="pub-t">Multimodal Traffic Analysis in Wearable XR and AI Glasses <span class="badge r">Under Review</span></div>
-        <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
-        <div class="pub-v"><i>Under submission</i> · ACM MobiCom 2026</div>
-        <div class="pub-links"><a class="req" href="mailto:khalaf.m@northeastern.edu" title="Request a draft">✉ Draft on request: khalaf.m@northeastern.edu</a></div>
-      </div>
-    </div>
-
-    <div class="pub">
-      <div class="thumb th3"><span class="tv">IEEE THMS</span><span class="tt">Spatial Awareness</span></div>
-      <div>
-        <div class="pub-t">AI-Assisted Spatial Awareness for Accessibility <span class="badge r">Under Review</span></div>
-        <div class="pub-a"><span class="me">M. Khalaf</span>, et al.</div>
-        <div class="pub-v"><i>Under review</i> · IEEE Transactions on Human-Machine Systems</div>
-        <div class="pub-links"><a class="req" href="mailto:khalaf.m@northeastern.edu" title="Request a draft">✉ Draft on request: khalaf.m@northeastern.edu</a></div>
-      </div>
-    </div>
-
-    <div class="pub-sub">Published</div>
-
-    <div class="pub">
-      <div class="thumb th2"><span class="tv">ASEE '25</span><span class="tt">NLP Reflections</span></div>
-      <div>
-        <div class="pub-t">Future-Ready Students: Validating the Use of Natural Language Processing to Analyze Student Reflections on a Remote Learning Group Project</div>
-        <div class="pub-a"><span class="me">M. Khalaf</span>, T. C. Olukanni, D. M. Feinauer, M. Cross, A. Al Bataineh</div>
-        <div class="pub-v">ASEE Annual Conference &amp; Exposition, 2025</div>
-        <div class="pub-links"><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2025validating,
+<header class="head"><div class="head-body">
+<p class="head-role">Ph.D. student at Northeastern University</p>
+<h1>Hi, I’m Majd.</h1>
+<p class="head-intro">I build wearable and wireless systems that help devices understand the world around them.</p>
+<div class="hero-actions"><a class="button primary" href="#research">Explore my research <span aria-hidden="true">↗</span></a><a class="text-link" href="Resume_Khalaf_Majd_06_10_2026.pdf" rel="noopener noreferrer" target="_blank">CV <span aria-hidden="true">↗</span></a></div>
+</div><div class="head-photo"><img alt="Majd Khalaf" fetchpriority="high" height="800" src="majd.png" width="800"/></div></header>
+<section class="section-split" id="about"><h2 class="sec">About</h2><div class="about-copy">
+<p>I am a Ph.D. student in Computer Engineering at Northeastern University, working in the <a href="https://sinrg.org/" rel="noopener noreferrer" target="_blank">Spatial Intelligence Research Group (SINRG)</a> with <a href="https://mallesham.com/" rel="noopener noreferrer" target="_blank">Prof. Mallesham Dasari</a>. My research is at the intersection of <b>wearable computing</b> and <b>wireless sensing</b>, with a broad interest in <b>spatial intelligence</b>: building systems that help everyday devices understand and interact with the physical world around them.</p>
+<p>I enjoy working across the full stack, from hardware and embedded systems to wireless networking, signal processing, and machine learning. I am especially drawn to problems where careful systems design can make intelligent sensing practical on small, low-power devices, and to applications that have real impact on people.</p>
+<p>Before my Ph.D., I earned a B.S. in Electrical &amp; Computer Engineering from Norwich University (minors in Mathematics and Computer Science), where I was named Student Engineer of the Year and served as President of Eta Kappa Nu.</p>
+<p>I am always open to new research collaborations. If our interests overlap, feel free to reach out at <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a>.</p>
+<div class="profile-links"><a href="https://scholar.google.com/citations?user=mO5VtjEAAAAJ&amp;hl=en" rel="noopener noreferrer" target="_blank">Google Scholar ↗</a><a href="https://www.linkedin.com/in/majd-khalaf-b3313222a/" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a><a href="https://github.com/mkhalaf0" rel="noopener noreferrer" target="_blank">GitHub ↗</a><button class="text-button" data-copy="khalaf.m@northeastern.edu" type="button">Copy email</button></div></div></section>
+<section class="section-split archive-section" id="now">
+<h2 class="sec">Now</h2>
+<details class="archive-details"><summary>June 2026 update <span aria-hidden="true">+</span></summary><p class="small muted">An archived update, retained here as part of my research timeline.</p><div class="now-card">
+<ul>
+<li>Preparing my poster for <b>AWE USA 2026</b> in Long Beach (June 15 to 18).</li>
+<li>Building the next <b>wearable sensing prototype</b> in the SINRG lab.</li>
+<li>Awaiting reviews on my <b>ACM MobiCom 2026</b> and <b>ACM SenSys 2026</b> submissions.</li>
+</ul>
+</div></details></section>
+<section class="section-split" id="news"><h2 class="sec">News</h2><div class="news-body">
+<ul class="news">
+<li><span class="nd">Jul 2026</span><span class="nt">Attended the <strong>Human-Centered Immersive Perception Evaluation Workshop</strong> at <strong>Worcester Polytechnic Institute (WPI)</strong> , shared our <strong>SINRG</strong> work, learned about <strong>ARBot</strong> and <strong>SensorFlex</strong>, and discussed future collaborations in XR sensing, privacy, systems, and human-centered evaluation. Thanks to Prof. Tian Guo and the organizers!</span></li>
+<li><span class="nd">Jun 2026</span><span class="nt">Presenting a poster at <strong>AWE USA 2026</strong> (Augmented World Expo), the world's largest XR and spatial computing event, in Long Beach, CA.</span></li>
+<li><span class="nd">May 2026</span><span class="nt">Submitted a paper on <strong>capacitive eye tracking</strong> for low-power smart glasses to <strong>ACM SenSys 2026</strong>.</span></li>
+<li><span class="nd">Apr 2026</span><span class="nt">Submitted a paper on <strong>multimodal traffic analysis</strong> in wearable XR / AI glasses to <strong>ACM MobiCom 2026</strong>.</span></li>
+</ul>
+<details class="archive-details earlier-news"><summary>Show earlier updates <span class="count">18</span><span aria-hidden="true">+</span></summary><ul class="news"><li><span class="nd">Feb 2026</span><span class="nt">Presented a poster at the <strong>Northeastern COE PhD Research Expo 2026</strong>.</span></li><li><span class="nd">Oct 2025</span><span class="nt">Continued research on <strong>assistive wearable interfaces</strong>.</span></li><li><span class="nd">Sep 2025</span><span class="nt">Started my <strong>Ph.D.</strong> in Computer Engineering at Northeastern, joining the <strong>SINRG</strong> lab.</span></li><li><span class="nd">Jul 2025</span><span class="nt">Served as faculty and Resident Assistant at <strong>GIV Engineering</strong> (Governor's Institutes of Vermont), teaching high school students to build solar trackers.</span></li><li><span class="nd">May 2025</span><span class="nt">Graduated from <strong>Norwich University</strong> with a B.S. in Electrical &amp; Computer Engineering.</span></li><li><span class="nd">May 2025</span><span class="nt">Presented capstone project <strong>AI-VIS</strong> (AI for visually impaired individuals) at the <strong>Vermont Society of Engineers 112th Annual Meeting</strong>.</span></li><li><span class="nd">Feb 2025</span><span class="nt">Named <strong>Student Engineer of the Year</strong> at Norwich University.</span></li><li><span class="nd">Nov 2024</span><span class="nt">Published work on <strong>NLP-based digital forensics</strong> in <i>Future Internet</i>.</span></li><li><span class="nd">Nov 2024</span><span class="nt">Attended the <strong>IEEE-Eta Kappa Nu Student Leadership Conference</strong> in Charlotte, NC.</span></li><li><span class="nd">Oct 2024</span><span class="nt">Presented at the <strong>AESH Annual International Conference on Soils, Sediments, Water, and Energy</strong> at UMass Amherst.</span></li><li><span class="nd">Sep 2024</span><span class="nt">Presented a poster at the <strong>Vermont AOT Research &amp; Innovation Symposium</strong> in Barre, VT.</span></li><li><span class="nd">Aug 2024</span><span class="nt">Presented at the <strong>AI Colloquium</strong> hosted by the Norwich University Applied Research Institute (NUARI).</span></li><li><span class="nd">Jun 2024</span><span class="nt">Presented at the <strong>15th Annual First-Year Engineering Experience (FYEE) Conference</strong> at Northeastern University.</span></li><li><span class="nd">May 2024</span><span class="nt">Presented a poster at the <strong>MassDOT Transportation Innovation Conference</strong> at the DCU Center, Worcester, MA.</span></li><li><span class="nd">May 2024</span><span class="nt">Attended the <strong>NEUTC (New England University Transportation Center) Symposium</strong> in Worcester, MA.</span></li><li><span class="nd">Apr 2024</span><span class="nt">Began as an <strong>Undergraduate Research Assistant</strong> at NEUTC, studying battery electric vehicle (BEV) adoption across Vermont.</span></li><li><span class="nd">Feb 2024</span><span class="nt">Presented at the <strong>Cybersecurity Research in Undergraduate Programs (CyRUP) Conference</strong> at Norwich University.</span></li><li><span class="nd">Nov 2022</span><span class="nt">Began tutoring as a <strong>Peer Tutor</strong> at the NU Center for Academic Success and Achievement.</span></li></ul></details></div></section>
+<section id="research"><h2 class="sec">Research</h2><p class="section-intro">Sensing the world with smaller, smarter devices.</p><div class="research-grid"><figure class="research-image"><button aria-label="Enlarge smart glasses illustration" class="image-button" data-image="lab_rayban.jpeg" type="button"><img alt="Exploded illustration of smart-glasses hardware" height="1117" loading="lazy" src="lab_rayban.jpeg" width="2048"/></button><figcaption>Smart glasses and the systems behind them.</figcaption><a class="text-link" href="#lab">Lab ↗</a></figure><div class="research-topics"><details class="research-topic" open=""><summary>Wireless traffic in wearables<span aria-hidden="true">+</span></summary><div class="topic-body"><p>Measuring and modeling how XR and AI glasses use the network, including traffic patterns, energy cost, and latency across BLE, Wi-Fi, and 5G, to inform system and protocol design.</p></div></details><details class="research-topic"><summary>Low-power wearable sensing<span aria-hidden="true">+</span></summary><div class="topic-body"><p>Sensing modalities that fit a wearable's power envelope, including capacitive eye tracking that replaces always-on cameras for continuous, privacy-preserving spatial inference.</p></div></details><details class="research-topic"><summary>Edge streaming for XR<span aria-hidden="true">+</span></summary><div class="topic-body"><p>Delivering spatially rich media (3D scenes, immersive content) under real network conditions using edge computation and adaptive algorithms.</p></div></details></div></div></section>
+<section id="publications"><h2 class="sec">Publications</h2><p class="section-intro">Wearable systems, sensing, and applied machine learning.</p><div aria-label="Filter publications" class="pubtabs" role="group"><button aria-pressed="true" class="ptab active" data-f="all" type="button">All</button><button aria-pressed="false" class="ptab" data-f="accepted" type="button">Accepted</button><button aria-pressed="false" class="ptab" data-f="published" type="button">Published</button><button aria-pressed="false" class="ptab" data-f="review" type="button">Under Review</button></div><p class="status-note">Updated October 2026.</p><p aria-live="polite" class="sr-only" id="publication-count" role="status"></p><div class="pub-sub" data-pg="accepted">Accepted</div>
+<article class="pub pub-illustrated" data-pg="accepted"><div class="pub-year">2026</div><div class="pub-content"><h3 class="pub-t">A First Look at Multimodal Mobile Application Performance on XR and AI Smart Glasses</h3><div class="pub-a"><span class="me">Majd Khalaf</span>, Mathew Garcia, Mayank Chadha, Mallesham Dasari</div><div class="pub-v">Accepted · ACM MobiCom 2026</div><div class="pub-links"><a href="https://doi.org/10.1145/3795866.3844477" rel="noopener noreferrer" target="_blank">DOI</a></div></div><figure class="pub-preview"><button aria-label="Enlarge: Smart glasses power measurement testbed with multimeter, shunt resistor and power supply" class="image-button" data-image="assets/publications/mobicom-testbed.png" type="button"><img alt="Smart glasses power measurement testbed with multimeter, shunt resistor and power supply" height="282" loading="lazy" src="assets/publications/mobicom-testbed.png" width="722"/></button><figcaption>Figure 2 · Khalaf et al. · CC BY 4.0</figcaption></figure>
+</article>
+<article class="pub pub-illustrated" data-pg="accepted"><div class="pub-year">2026</div><div class="pub-content"><h3 class="pub-t">CapGaze: Capacitive Sensing-based Eye Tracking on XR and AI Smart Glasses</h3><div class="pub-a"><span class="me">Majd Khalaf</span>, Guodong Chen, Aidan Hanson, Mallesham Dasari</div><div class="pub-v">Accepted · ACM SenSys 2026</div></div><figure class="pub-preview"><button aria-label="Enlarge: Capacitive eye tracking diagram showing electrodes, fringing fields and eye movement" class="image-button" data-image="assets/publications/capgaze-sensing.png" type="button"><img alt="Capacitive eye tracking diagram showing electrodes, fringing fields and eye movement" height="434" loading="lazy" src="assets/publications/capgaze-sensing.png" width="577"/></button><figcaption>Figure 1 · Khalaf, Chen, Hanson &amp; Dasari</figcaption></figure>
+</article>
+<div class="pub-sub" data-pg="published">Published</div>
+<article class="pub pub-illustrated" data-pg="published"><div class="pub-year">2025</div>
+<div class="pub-content">
+<h3 class="pub-t">Future-Ready Students: Validating the Use of Natural Language Processing to Analyze Student Reflections on a Remote Learning Group Project</h3>
+<div class="pub-a"><span class="me">M. Khalaf</span>, T. C. Olukanni, D. M. Feinauer, M. Cross, A. Al Bataineh</div>
+<div class="pub-v">ASEE Annual Conference &amp; Exposition, 2025</div>
+<div class="pub-links"><a href="https://nemo.asee.org/public/conferences/365/papers/46681/download" rel="noopener noreferrer" target="_blank">Paper</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2025validating,
   title     = {Future-Ready Students: Validating the Use of Natural Language Processing to Analyze Student Reflections on a Remote Learning Group Project},
   author    = {Khalaf, M. and Olukanni, T. C. and Feinauer, D. M. and Cross, M. and Al Bataineh, A.},
   booktitle = {ASEE Annual Conference and Exposition},
   year      = {2025}
 }</div></details></div>
-      </div>
-    </div>
-
-    <div class="pub">
-      <div class="thumb has-img"><img src="futureinternet.png" alt="Identifying persons of interest in digital forensics using NLP-based AI"></div>
-      <div>
-        <div class="pub-t">Identifying Persons of Interest in Digital Forensics Using NLP-Based AI</div>
-        <div class="pub-a">J. Adkins, A. Bataineh, <span class="me">M. Khalaf</span></div>
-        <div class="pub-v"><i>Future Internet</i>, 16(11):426, 2024</div>
-        <div class="pub-links"><a href="https://doi.org/10.3390/fi16110426" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@article{khalaf2024forensics,
+</div>
+<figure class="pub-preview"><button aria-label="Enlarge: Opening page of the Future-Ready Students paper on analyzing student reflections" class="image-button" data-image="assets/publications/student-reflections-opening.png" type="button"><img alt="Opening page of the Future-Ready Students paper on analyzing student reflections" height="530" loading="lazy" src="assets/publications/student-reflections-opening.png" width="968"/></button><figcaption>Paper preview · Khalaf et al. · © ASEE 2025</figcaption></figure>
+</article>
+<article class="pub pub-illustrated" data-pg="published"><div class="pub-year">2024</div>
+<div class="pub-content">
+<h3 class="pub-t">Identifying Persons of Interest in Digital Forensics Using NLP-Based AI</h3>
+<div class="pub-a">J. Adkins, A. Al Bataineh, <span class="me">M. Khalaf</span></div>
+<div class="pub-v"><i>Future Internet</i>, 16(11):426, 2024</div>
+<div class="pub-links"><a href="https://doi.org/10.3390/fi16110426" rel="noopener noreferrer" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@article{khalaf2024forensics,
   title   = {Identifying Persons of Interest in Digital Forensics Using NLP-Based AI},
-  author  = {Adkins, J. and Bataineh, A. and Khalaf, M.},
+  author  = {Adkins, J. and Al Bataineh, A. and Khalaf, M.},
   journal = {Future Internet},
   volume  = {16}, number = {11}, pages = {426}, year = {2024},
   doi     = {10.3390/fi16110426}
 }</div></details></div>
-      </div>
-    </div>
-
-    <div class="pub">
-      <div class="thumb th5"><span class="tv">FYEE '24</span><span class="tt">NLP Survey Analysis</span></div>
-      <div>
-        <div class="pub-t">Future-Ready Students: Survey Analysis Utilizing Natural Language Processing</div>
-        <div class="pub-a">T. C. Olukanni, <span class="me">M. Khalaf</span>, M. Cross, D. M. Feinauer, A. Al Bataineh</div>
-        <div class="pub-v">ASEE / IEEE FYEE 2024</div>
-        <div class="pub-links"><a href="https://doi.org/10.18260/1-2--48593" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2024futureready,
-  title     = {Future-Ready Students: Survey Analysis Utilizing Natural Language Processing},
+</div>
+<figure class="pub-preview"><button aria-label="Enlarge: NLP tools and linguistic relationships in the forensic analysis workflow" class="image-button" data-image="futureinternet.png" type="button"><img alt="NLP tools and linguistic relationships in the forensic analysis workflow" height="1164" loading="lazy" src="futureinternet.png" width="2988"/></button><figcaption>Adkins, Al Bataineh &amp; Khalaf · 2024 · CC BY 4.0</figcaption></figure>
+</article>
+<article class="pub pub-illustrated" data-pg="published"><div class="pub-year">2024</div>
+<div class="pub-content">
+<h3 class="pub-t">Full Paper: Future-Ready Students: Survey Analysis Utilizing Natural Language Processing</h3>
+<div class="pub-a">T. C. Olukanni, <span class="me">M. Khalaf</span>, M. Cross, D. M. Feinauer, A. Al Bataineh</div>
+<div class="pub-v">15th Annual First-Year Engineering Experience Conference (FYEE), Boston, 2024</div>
+<div class="pub-links"><a href="https://doi.org/10.18260/1-2--48593" rel="noopener noreferrer" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2024futureready,
+  title     = {Full Paper: Future-Ready Students: Survey Analysis Utilizing Natural Language Processing},
   author    = {Olukanni, T. C. and Khalaf, M. and Cross, M. and Feinauer, D. M. and Al Bataineh, A.},
-  booktitle = {ASEE/IEEE First-Year Engineering Experience (FYEE) Conference},
+  booktitle = {15th Annual First-Year Engineering Experience Conference (FYEE)},
   year      = {2024},
   doi       = {10.18260/1-2--48593}
 }</div></details></div>
-      </div>
-    </div>
-
-    <div class="pub">
-      <div class="thumb th6"><span class="tv">FYEE '24</span><span class="tt">Remote Collaboration</span></div>
-      <div>
-        <div class="pub-t">Future-Ready Students: Providing Opportunities for Remote Collaboration on an Engineering Design Project</div>
-        <div class="pub-a"><span class="me">M. Khalaf</span>, D. M. Feinauer, M. Cross</div>
-        <div class="pub-v">ASEE / IEEE FYEE 2024</div>
-        <div class="pub-links"><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2024remote,
-  title     = {Future-Ready Students: Providing Opportunities for Remote Collaboration on an Engineering Design Project},
-  author    = {Khalaf, M. and Feinauer, D. M. and Cross, M.},
-  booktitle = {ASEE/IEEE First-Year Engineering Experience (FYEE) Conference},
-  year      = {2024}
+</div>
+<figure class="pub-preview"><button aria-label="Enlarge: Word clouds for combined, Norwich and VMI student reflections" class="image-button" data-image="assets/publications/survey-wordclouds.png" type="button"><img alt="Word clouds for combined, Norwich and VMI student reflections" height="239" loading="lazy" src="assets/publications/survey-wordclouds.png" width="1370"/></button><figcaption>Figure 2 · Olukanni et al. · © ASEE 2024</figcaption></figure>
+</article>
+<article class="pub pub-illustrated" data-pg="published"><div class="pub-year">2024</div>
+<div class="pub-content">
+<h3 class="pub-t">Full Paper: Future-Ready Students: Providing Opportunities for Remote Collaboration on an Engineering Design Project</h3>
+<div class="pub-a">D. M. Feinauer, M. Cross, A. Al Bataineh, T. C. Olukanni, <span class="me">M. Khalaf</span></div>
+<div class="pub-v">15th Annual First-Year Engineering Experience Conference (FYEE), Boston, 2024</div>
+<div class="pub-links"><a href="https://doi.org/10.18260/1-2--48599" rel="noopener noreferrer" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@inproceedings{khalaf2024remote,
+  title     = {Full Paper: Future-Ready Students: Providing Opportunities for Remote Collaboration on an Engineering Design Project},
+  author    = {Feinauer, D. M. and Cross, M. and Al Bataineh, A. and Olukanni, T. C. and Khalaf, M.},
+  booktitle = {15th Annual First-Year Engineering Experience Conference (FYEE)},
+  year      = {2024},
+  doi       = {10.18260/1-2--48599}
 }</div></details></div>
-      </div>
-    </div>
-
-    <div class="pub">
-      <div class="thumb has-img"><img src="bilstm.png" alt="Bi-LSTM misinformation detection pipeline with genetic algorithm optimization"></div>
-      <div>
-        <div class="pub-t">Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms</div>
-        <div class="pub-a">A. Al Bataineh, V. Reyes, T. Olukanni, <span class="me">M. Khalaf</span>, A. Vibho, R. Pedyuk</div>
-        <div class="pub-v"><i>Electronics</i>, 12(15):3250, 2023</div>
-        <div class="pub-links"><a href="https://doi.org/10.3390/electronics12153250" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@article{albataineh2023misinformation,
+</div>
+<figure class="pub-preview"><button aria-label="Enlarge: Student design and TinkerCAD implementation of an automatic plant watering system" class="image-button" data-image="assets/publications/remote-design.png" type="button"><img alt="Student design and TinkerCAD implementation of an automatic plant watering system" height="465" loading="lazy" src="assets/publications/remote-design.png" width="1337"/></button><figcaption>Figure 1 · Feinauer et al. · © ASEE 2024</figcaption></figure>
+</article>
+<article class="pub pub-illustrated" data-pg="published"><div class="pub-year">2023</div>
+<div class="pub-content">
+<h3 class="pub-t">Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms</h3>
+<div class="pub-a">A. Al Bataineh, V. Reyes, T. Olukanni, <span class="me">M. Khalaf</span>, A. Vibho, R. Pedyuk</div>
+<div class="pub-v"><i>Electronics</i>, 12(15):3250, 2023</div>
+<div class="pub-links"><a href="https://doi.org/10.3390/electronics12153250" rel="noopener noreferrer" target="_blank">DOI</a><details class="bib"><summary>BibTeX</summary><div class="bibbox">@article{albataineh2023misinformation,
   title   = {Advanced Misinformation Detection: A Bi-LSTM Model Optimized by Genetic Algorithms},
   author  = {Al Bataineh, A. and Reyes, V. and Olukanni, T. and Khalaf, M. and Vibho, A. and Pedyuk, R.},
   journal = {Electronics},
   volume  = {12}, number = {15}, pages = {3250}, year = {2023},
   doi     = {10.3390/electronics12153250}
 }</div></details></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="conferences">
-    <h2 class="sec">Conferences</h2>
-    <div id="confmap"></div>
-    <div class="confmap-note">Cities where I have presented or attended. Click a pin for details.</div>
-    <div class="entry">
-      <div class="e-main"><b>AWE USA 2026 (Augmented World Expo)</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">The world's largest XR and spatial computing event.</div></div>
-      <div class="e-date">Jun 2026<br>Long Beach, CA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Northeastern COE PhD Research Expo 2026</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">College of Engineering annual PhD research poster expo.</div></div>
-      <div class="e-date">Feb 2026<br>Boston, MA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Vermont Society of Engineers (VSE) 112th Annual Meeting</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Presented capstone project AI-VIS: AI for visually impaired individuals.</div></div>
-      <div class="e-date">May 2025<br>Montpelier, VT</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>IEEE-Eta Kappa Nu Student Leadership Conference</b><div class="e-sub">Role: Attendee</div><div class="e-adv">IEEE-Eta Kappa Nu (HKN)</div></div>
-      <div class="e-date">Nov 2024<br>Charlotte, NC</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>AESH Annual International Conference on Soils, Sediments, Water, and Energy</b><div class="e-sub">Role: Presenter</div><div class="e-adv">UMass Amherst</div></div>
-      <div class="e-date">Oct 2024<br>Amherst, MA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Vermont AOT Research &amp; Innovation Symposium</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">Vermont Agency of Transportation</div></div>
-      <div class="e-date">Sep 2024<br>Barre, VT</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Artificial Intelligence (AI) Colloquium</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Norwich University Applied Research Institute (NUARI)</div></div>
-      <div class="e-date">Aug 2024<br>Northfield, VT</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>15th Annual First-Year Engineering Experience Conference (FYEE)</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Northeastern University. Presented work on NLP-based survey analysis.</div></div>
-      <div class="e-date">Jun 2024<br>Boston, MA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>MassDOT Transportation Innovation Conference</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">DCU Center</div></div>
-      <div class="e-date">May 2024<br>Worcester, MA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>NEUTC Symposium</b><div class="e-sub">Role: Attendee</div><div class="e-adv">New England University Transportation Center</div></div>
-      <div class="e-date">May 2024<br>Worcester, MA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Cybersecurity Research in Undergraduate Programs (CyRUP) Conference</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Norwich University</div></div>
-      <div class="e-date">Feb 2024<br>Northfield, VT</div>
-    </div>
-  </section>
-
-  <section id="lab">
-    <h2 class="sec">From the Lab</h2>
-    <div class="gallery">
-      <figure><img src="lab_rayban.jpeg" alt="Meta Ray-Ban smart glasses used for traffic measurements" loading="lazy"><figcaption>Meta Ray-Ban glasses instrumented for wireless traffic measurements.</figcaption></figure>
-    </div>
-  </section>
-
-  <section id="experience">
-    <h2 class="sec">Experience</h2>
-    <div class="entry">
-      <div class="e-main"><b>Research Assistant</b> · SINRG, Northeastern University<div class="e-sub">Research on wearable computing, wireless sensing, and spatial intelligence with <a href="https://mallesham.com/" target="_blank">Prof. Mallesham Dasari</a>.</div></div>
-      <div class="e-date">Sep 2025 to Present<br>Boston, MA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Software Engineer II</b> · Atombeam Technologies<div class="e-sub">Cloud infrastructure (IaC), data pipelines for compression, ETL design, CI/CD and observability for distributed systems.</div></div>
-      <div class="e-date">Feb to Sep 2025<br>Moraga, CA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Faculty &amp; Resident Assistant</b> · GIV Engineering (Governor's Institutes of Vermont)<div class="e-sub">Taught high school students to assemble solar trackers and served as a residential assistant for the engineering summer institute.</div></div>
-      <div class="e-date">Summer 2025<br>Northfield, VT</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Site Reliability Engineer Intern</b> · Walmart Advanced Systems &amp; Robotics<div class="e-sub">Automated deployments with Ansible, Docker, Azure CLI; containerized Datadog synthetic testing; optimized a Go docs viewer with goroutines.</div></div>
-      <div class="e-date">Jun – Aug 2024<br>Andover, MA</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>AI Research Fellow &amp; Teaching Assistant</b> · Norwich University AI Center<div class="e-sub">AI methods across digital forensics, medical, and ECE domains; dataset curation; lectured in senior-level AI courses and mentored capstone students. Advised by <a href="https://www.linkedin.com/in/aalbata/" target="_blank">Prof. Ali Al Bataineh</a>.</div></div>
-      <div class="e-date">Jan 2024 – May 2025<br>Northfield, VT</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Undergraduate Research Assistant</b> · NEUTC (New England University Transportation Center)<div class="e-sub">Investigated how climate, terrain, varying road conditions, and road classification affect battery electric vehicle (BEV) adoption across Vermont.</div><div class="e-adv">Advised by <a href="https://www.linkedin.com/in/michael-cross-nu/" target="_blank">Prof. Michael Cross</a></div></div>
-      <div class="e-date">Apr – Jul 2024<br>Northfield, VT</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Peer Tutor</b> · NU Center for Academic Success and Achievement<div class="e-sub">Tutored students individually and in groups in math, physics, and electrical engineering, adapting techniques to each student's learning style to provide a supportive learning environment.</div></div>
-      <div class="e-date">Nov 2022 to Present<br>Northfield, VT</div>
-    </div>
-  </section>
-
-  <section id="education">
-    <h2 class="sec">Education</h2>
-    <div class="entry">
-      <div class="e-main"><b>Northeastern University</b><div class="e-sub">Ph.D., Computer Engineering</div><div class="e-adv">Advisor: <a href="https://sinrg.org/" target="_blank">Prof. Mallesham Dasari</a> (SINRG)</div></div>
-      <div class="e-date">2025 – 2030 (expected)</div>
-    </div>
-    <div class="entry">
-      <div class="e-main"><b>Norwich University</b><div class="e-sub">B.S., Electrical &amp; Computer Engineering</div><div class="e-adv">Minors in Mathematics and Computer Science</div></div>
-      <div class="e-date">2021 – 2025</div>
-    </div>
-  </section>
-
-  <section id="honors">
-    <h2 class="sec">Honors &amp; Awards</h2>
-    <ul class="honors">
-      <li>Student Engineer of the Year <span class="hy">· Norwich University, 2025</span></li>
-      <li>Carol E. Stephens Memorial Award <span class="hy">· 2024</span></li>
-      <li>Engineers Society Freshman Award <span class="hy">· 2022</span></li>
-      <li>President, Eta Kappa Nu (HKN)</li>
-      <li>Vice President, Tau Beta Pi</li>
-    </ul>
-  </section>
-
-  <section id="notes">
-    <h2 class="sec">Notes</h2>
-    <p class="muted">Occasional short writeups on things I am building and measuring.</p>
-    <div class="note"><div class="note-t">Instrumenting AI glasses: what the traffic actually looks like</div><div class="note-m">Coming soon</div></div>
-    <div class="note"><div class="note-t">Why capacitive sensing is a good fit for eye tracking</div><div class="note-m">Coming soon</div></div>
-  </section>
-
-  <section id="skills">
-    <h2 class="sec">Technical Skills</h2>
-    <div class="skills">
-      <div><span class="skill-label">Languages</span><span class="chip">Python</span><span class="chip">Go</span><span class="chip">C/C++</span><span class="chip">MATLAB</span><span class="chip">Verilog/VHDL</span><span class="chip">R</span><span class="chip">Bash</span></div>
-      <div><span class="skill-label">ML / Signal</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Transformers</span><span class="chip">scikit-learn</span><span class="chip">NumPy</span></div>
-      <div><span class="skill-label">Wireless</span><span class="chip">Wi-Fi</span><span class="chip">BLE</span><span class="chip">5G</span><span class="chip">RF/Antenna</span><span class="chip">Wireshark</span><span class="chip">TCP/IP</span></div>
-      <div><span class="skill-label">Embedded</span><span class="chip">ESP32</span><span class="chip">MSP430</span><span class="chip">Arduino</span><span class="chip">Raspberry Pi</span><span class="chip">SPI/I2C/UART</span></div>
-      <div><span class="skill-label">Cloud / DevOps</span><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Terraform</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Ansible</span></div>
-      <div><span class="skill-label">Data</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">REST APIs</span><span class="chip">Linux administration</span></div>
-    </div>
-  </section>
-
+</div>
+<figure class="pub-preview"><button aria-label="Enlarge: Bi-LSTM misinformation detection workflow with genetic algorithm optimization" class="image-button" data-image="bilstm.png" type="button"><img alt="Bi-LSTM misinformation detection workflow with genetic algorithm optimization" height="2636" loading="lazy" src="bilstm.png" width="3317"/></button><figcaption>Al Bataineh et al. · 2023 · CC BY 4.0</figcaption></figure>
+</article>
+<div class="pub-sub" data-pg="review">Under Review</div><p class="review-note" data-pg="review">Broad research topics only. Manuscript titles, authors, venues, and materials are withheld during review.</p>
+<article class="pub" data-pg="review"><div class="pub-year">Ongoing</div><div class="pub-content"><h3 class="pub-t">Assistive wearable interfaces</h3><div class="pub-v">Under review</div></div></article>
+<article class="pub" data-pg="review"><div class="pub-year">Ongoing</div><div class="pub-content"><h3 class="pub-t">Learning practical skills in immersive environments</h3><div class="pub-v">Under review</div></div></article>
+<article class="pub" data-pg="review"><div class="pub-year">Ongoing</div><div class="pub-content"><h3 class="pub-t">Efficient delivery of immersive media</h3><div class="pub-v">Under review</div></div></article>
+</section>
+<section id="conferences">
+<h2 class="sec">Conferences</h2><p class="section-intro">Places I’ve shared and discussed my work.</p>
+<div class="conference-grid"><div class="conference-map"><div aria-label="Conference locations map" id="confmap" role="region"><p class="map-loading">Map loads as you scroll. Conference details are listed alongside it.</p></div><div class="confmap-note">Cities where I have presented or attended. Click a pin for details.</div><p class="small muted" id="map-status" role="status"></p></div><div class="conference-list"><div class="entry">
+<div class="e-main"><b>AWE USA 2026 (Augmented World Expo)</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">The world's largest XR and spatial computing event.</div></div>
+<div class="e-date">Jun 2026<br/>Long Beach, CA</div>
+</div><div class="entry">
+<div class="e-main"><b>Northeastern COE PhD Research Expo 2026</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">College of Engineering annual PhD research poster expo.</div></div>
+<div class="e-date">Feb 2026<br/>Boston, MA</div>
+</div><div class="entry">
+<div class="e-main"><b>Vermont Society of Engineers (VSE) 112th Annual Meeting</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Presented capstone project AI-VIS: AI for visually impaired individuals.</div></div>
+<div class="e-date">May 2025<br/>Montpelier, VT</div>
+</div><details class="archive-details"><summary>All conferences <span aria-hidden="true">+</span></summary><div class="entry">
+<div class="e-main"><b>IEEE-Eta Kappa Nu Student Leadership Conference</b><div class="e-sub">Role: Attendee</div><div class="e-adv">IEEE-Eta Kappa Nu (HKN)</div></div>
+<div class="e-date">Nov 2024<br/>Charlotte, NC</div>
+</div><div class="entry">
+<div class="e-main"><b>AESH Annual International Conference on Soils, Sediments, Water, and Energy</b><div class="e-sub">Role: Presenter</div><div class="e-adv">UMass Amherst</div></div>
+<div class="e-date">Oct 2024<br/>Amherst, MA</div>
+</div><div class="entry">
+<div class="e-main"><b>Vermont AOT Research &amp; Innovation Symposium</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">Vermont Agency of Transportation</div></div>
+<div class="e-date">Sep 2024<br/>Barre, VT</div>
+</div><div class="entry">
+<div class="e-main"><b>Artificial Intelligence (AI) Colloquium</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Norwich University Applied Research Institute (NUARI)</div></div>
+<div class="e-date">Aug 2024<br/>Northfield, VT</div>
+</div><div class="entry">
+<div class="e-main"><b>15th Annual First-Year Engineering Experience Conference (FYEE)</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Northeastern University. Presented work on NLP-based survey analysis.</div></div>
+<div class="e-date">Jun 2024<br/>Boston, MA</div>
+</div><div class="entry">
+<div class="e-main"><b>MassDOT Transportation Innovation Conference</b><div class="e-sub">Role: Poster Presenter</div><div class="e-adv">DCU Center</div></div>
+<div class="e-date">May 2024<br/>Worcester, MA</div>
+</div><div class="entry">
+<div class="e-main"><b>NEUTC Symposium</b><div class="e-sub">Role: Attendee</div><div class="e-adv">New England University Transportation Center</div></div>
+<div class="e-date">May 2024<br/>Worcester, MA</div>
+</div><div class="entry">
+<div class="e-main"><b>Cybersecurity Research in Undergraduate Programs (CyRUP) Conference</b><div class="e-sub">Role: Presenter</div><div class="e-adv">Norwich University</div></div>
+<div class="e-date">Feb 2024<br/>Northfield, VT</div>
+</div></details></div></div></section>
+<section class="section-split" id="lab"><h2 class="sec">Lab</h2><div class="lab-copy"><p class="large-copy">From the hardware to the network.</p><p>In the <a href="https://sinrg.org/" rel="noopener noreferrer" target="_blank">Spatial Intelligence Research Group</a>, I work across embedded systems, wireless networking, signal processing, and machine learning.</p><p>My wearable research examines traffic patterns, energy use, and latency in XR and AI glasses.</p><button aria-label="Enlarge smart glasses illustration" class="text-button" data-image="lab_rayban.jpeg" type="button">Explore the glasses illustration ↗</button></div></section>
+<section class="section-split" id="experience"><h2 class="sec">Experience</h2><div class="section-body">
+<div class="entry"><div class="e-date">Sep 2025 to Present<br/>Boston, MA</div>
+<div class="e-main"><b>Research Assistant</b> · SINRG, Northeastern University<div class="e-sub">Research on wearable computing, wireless sensing, and spatial intelligence with <a href="https://mallesham.com/" rel="noopener noreferrer" target="_blank">Prof. Mallesham Dasari</a>.</div></div>
+</div>
+<div class="entry"><div class="e-date">Feb to Sep 2025<br/>Moraga, CA</div>
+<div class="e-main"><b>Software Engineer II</b> · Atombeam Technologies<div class="e-sub">Cloud infrastructure (IaC), data pipelines for compression, ETL design, CI/CD and observability for distributed systems.</div></div>
+</div>
+<div class="entry"><div class="e-date">Summer 2025<br/>Northfield, VT</div>
+<div class="e-main"><b>Faculty &amp; Resident Assistant</b> · GIV Engineering (Governor's Institutes of Vermont)<div class="e-sub">Taught high school students to assemble solar trackers and served as a residential assistant for the engineering summer institute.</div></div>
+</div>
+<div class="entry"><div class="e-date">Jun - Aug 2024<br/>Andover, MA</div>
+<div class="e-main"><b>Site Reliability Engineer Intern</b> · Walmart Advanced Systems &amp; Robotics<div class="e-sub">Automated deployments with Ansible, Docker, Azure CLI; containerized Datadog synthetic testing; optimized a Go docs viewer with goroutines.</div></div>
+</div>
+<details class="archive-details"><summary>Earlier experience <span aria-hidden="true">+</span></summary><div class="entry"><div class="e-date">Jan 2024 - May 2025<br/>Northfield, VT</div>
+<div class="e-main"><b>AI Research Fellow &amp; Teaching Assistant</b> · Norwich University AI Center<div class="e-sub">AI methods across digital forensics, medical, and ECE domains; dataset curation; lectured in senior-level AI courses and mentored capstone students. Advised by <a href="https://www.linkedin.com/in/aalbata/" rel="noopener noreferrer" target="_blank">Prof. Ali Al Bataineh</a>.</div></div>
+</div><div class="entry"><div class="e-date">Apr - Jul 2024<br/>Northfield, VT</div>
+<div class="e-main"><b>Undergraduate Research Assistant</b> · NEUTC (New England University Transportation Center)<div class="e-sub">Investigated how climate, terrain, varying road conditions, and road classification affect battery electric vehicle (BEV) adoption across Vermont.</div><div class="e-adv">Advised by <a href="https://www.linkedin.com/in/michael-cross-nu/" rel="noopener noreferrer" target="_blank">Prof. Michael Cross</a></div></div>
+</div><div class="entry"><div class="e-date">Nov 2022 to Present<br/>Northfield, VT</div>
+<div class="e-main"><b>Peer Tutor</b> · NU Center for Academic Success and Achievement<div class="e-sub">Tutored students individually and in groups in math, physics, and electrical engineering, adapting techniques to each student's learning style to provide a supportive learning environment.</div></div>
+</div></details></div></section>
+<section class="section-split" id="education"><h2 class="sec">Education</h2><div class="education-grid">
+<div class="entry"><div class="e-date">2025 - 2030 (expected)</div>
+<div class="e-main"><b>Northeastern University</b><div class="e-sub">Ph.D., Computer Engineering</div><div class="e-adv">Advisor: <a href="https://sinrg.org/" rel="noopener noreferrer" target="_blank">Prof. Mallesham Dasari</a> (SINRG)</div></div>
+</div>
+<div class="entry"><div class="e-date">2021 - 2025</div>
+<div class="e-main"><b>Norwich University</b><div class="e-sub">B.S., Electrical &amp; Computer Engineering</div><div class="e-adv">Minors in Mathematics and Computer Science</div></div>
+</div>
+</div></section>
+<section class="section-split" id="honors"><h2 class="sec">Honors &amp; Awards</h2><div class="section-body">
+<ul class="honors">
+<li>Student Engineer of the Year <span class="hy">· Norwich University, 2025</span></li>
+<li>Carol E. Stephens Memorial Award <span class="hy">· 2024</span></li>
+<li>Engineers Society Freshman Award <span class="hy">· 2022</span></li>
+<li>President, Eta Kappa Nu (HKN)</li>
+<li>Vice President, Tau Beta Pi</li>
+</ul>
+</div></section>
+<section class="section-split" id="notes"><h2 class="sec">Notes</h2><div class="section-body">
+<p class="muted">Occasional short writeups on things I am building and measuring.</p>
+<div class="note"><div class="note-t">Instrumenting AI glasses: what the traffic actually looks like</div><div class="note-m">Coming soon</div></div>
+<div class="note"><div class="note-t">Why capacitive sensing is a good fit for eye tracking</div><div class="note-m">Coming soon</div></div>
+</div></section>
+<section class="section-split" id="skills"><h2 class="sec">Technical Skills</h2><div class="section-body">
+<div class="skills">
+<div><span class="skill-label">Languages</span><p>Python, Go, C/C++, MATLAB, Verilog/VHDL, R, Bash</p></div>
+<div><span class="skill-label">ML / Signal</span><p>PyTorch, TensorFlow, Transformers, scikit-learn, NumPy</p></div>
+<div><span class="skill-label">Wireless</span><p>Wi-Fi, BLE, 5G, RF/Antenna, Wireshark, TCP/IP</p></div>
+<div><span class="skill-label">Embedded</span><p>ESP32, MSP430, Arduino, Raspberry Pi, SPI/I2C/UART</p></div>
+<div><span class="skill-label">Cloud / DevOps</span><p>AWS, Azure, Terraform, Docker, Kubernetes, Ansible</p></div>
+<div><span class="skill-label">Data</span><p>PostgreSQL, MySQL, REST APIs, Linux administration</p></div>
+</div>
+</div></section>
 </main>
-
-<footer>
-  <div class="foot-mono">MK</div>
-  <p>Majd Khalaf · <a href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu</a> · <a href="https://sinrg.org/" target="_blank">SINRG</a>, Northeastern University</p>
-  <p class="foot-sub">Boston, MA · Last updated June 2026</p>
-</footer>
-
-<div class="lb" id="lightbox"><button class="lb-close" type="button" aria-label="Close">&times;</button><img alt=""></div>
-<button id="toTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
-
-<script>
-const secs=[...document.querySelectorAll('main section')],links=[...document.querySelectorAll('.nav-in a[href^="#"]')];
-function onScroll(){let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-90)cur=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))}
-addEventListener('scroll',onScroll);onScroll();
-
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const els=[...document.querySelectorAll('.sec, .about-text p, .research p, .rlist li, .pub, .entry, .news li, .honors li, .skills div, .now-card, .gallery figure, .note')];
-  els.forEach(el=>{el.classList.add('reveal');let i=0,p=el.previousElementSibling;while(p){if(p.classList&&p.classList.contains('reveal'))i++;p=p.previousElementSibling;}el.style.transitionDelay=Math.min(i,4)*40+'ms';});
-  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-  els.forEach(el=>io.observe(el));
-}
-
-// dark mode toggle
-(function(){
-  const root=document.documentElement, btn=document.getElementById('themeBtn');
-  if(!btn)return;
-  btn.addEventListener('click',()=>{
-    const isDark=root.getAttribute('data-theme')==='dark';
-    if(isDark){root.removeAttribute('data-theme');}else{root.setAttribute('data-theme','dark');}
-    try{localStorage.setItem('theme',isDark?'light':'dark');}catch(e){}
-    if(window.__setMapTheme)window.__setMapTheme(!isDark);
-  });
-})();
-
-// copy to clipboard (BibTeX + email)
-document.querySelectorAll('.bibbox').forEach(box=>{
-  const txt=box.textContent;
-  const b=document.createElement('button');b.className='copybtn';b.type='button';b.textContent='Copy';
-  b.addEventListener('click',e=>{e.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(txt).then(()=>{b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1400);});});
-  box.appendChild(b);
-});
-document.querySelectorAll('[data-copy]').forEach(b=>{
-  b.addEventListener('click',e=>{e.preventDefault();const t=b.textContent;navigator.clipboard&&navigator.clipboard.writeText(b.getAttribute('data-copy')).then(()=>{b.textContent='Copied!';setTimeout(()=>b.textContent=t,1400);});});
-});
-
-// lightbox for paper figures
-(function(){
-  const lb=document.getElementById('lightbox');if(!lb)return;
-  const img=lb.querySelector('img');
-  document.querySelectorAll('.thumb.has-img img, .gallery img').forEach(t=>{
-    t.addEventListener('click',()=>{img.src=t.getAttribute('src');img.alt=t.alt;lb.classList.add('open');});
-  });
-  const close=()=>lb.classList.remove('open');
-  lb.addEventListener('click',close);
-  addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-})();
-
-// progress bar + back-to-top
-(function(){
-  const bar=document.getElementById('progress'), top=document.getElementById('toTop');
-  function upd(){const h=document.documentElement.scrollHeight-innerHeight;const p=h>0?scrollY/h:0;if(bar)bar.style.width=(p*100)+'%';if(top)top.classList.toggle('show',scrollY>500);}
-  addEventListener('scroll',upd,{passive:true});upd();
-  top&&top.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
-})();
-
-// news category tags
-(function(){
-  const tags=['conf','talk','pub','pub','talk','pub','milestone','milestone','milestone','talk','award','pub','conf','talk','talk','talk','talk','talk','conf','milestone','talk','milestone'];
-  const label={pub:'Publication',talk:'Talk',award:'Award',milestone:'Milestone',conf:'Conference'};
-  document.querySelectorAll('.news li').forEach((li,i)=>{const t=tags[i];if(!t)return;const nt=li.querySelector('.nt');if(!nt)return;const s=document.createElement('span');s.className='ntag tag-'+t;s.textContent=label[t];nt.appendChild(s);});
-})();
-
-// collapse long news feed
-(function(){
-  const items=[...document.querySelectorAll('.news li')];
-  if(items.length<=8)return;
-  const hidden=items.slice(8);
-  hidden.forEach(li=>li.style.display='none');
-  const btn=document.createElement('button');btn.className='newsmore';btn.type='button';
-  const closed='Show all '+items.length+' updates ↓';
-  btn.textContent=closed;
-  btn.addEventListener('click',()=>{
-    const open=btn.dataset.open==='1';
-    hidden.forEach(li=>li.style.display=open?'none':'');
-    btn.dataset.open=open?'0':'1';
-    btn.textContent=open?closed:'Show fewer ↑';
-  });
-  document.querySelector('.news').after(btn);
-})();
-
-// publication filter tabs
-(function(){
-  const sec=document.getElementById('publications');if(!sec)return;
-  let g='';
-  [...sec.children].forEach(el=>{
-    if(el.classList&&el.classList.contains('pub-sub')){g=/review/i.test(el.textContent)?'review':'published';el.dataset.pg=g;}
-    else if(el.classList&&el.classList.contains('pub')){el.dataset.pg=g;}
-  });
-  const tabs=[...sec.querySelectorAll('.ptab')], ind=sec.querySelector('.ptab-ind');
-  function move(t){if(ind&&t){ind.style.left=t.offsetLeft+'px';ind.style.width=t.offsetWidth+'px';}}
-  tabs.forEach(t=>t.addEventListener('click',()=>{
-    const f=t.dataset.f;tabs.forEach(x=>x.classList.toggle('active',x===t));move(t);
-    sec.querySelectorAll('[data-pg]').forEach(el=>{const show=(f==='all'||el.dataset.pg===f);el.style.display=show?'':'none';if(show)el.classList.add('in');});
-  }));
-  const init=()=>move(sec.querySelector('.ptab.active')||tabs[0]);
-  requestAnimationFrame(init);addEventListener('load',init);addEventListener('resize',init);
-})();
-
-// conference map
-(function(){
-  if(!window.L||!document.getElementById('confmap'))return;
-  const places=[
-    {c:'Long Beach, CA',ll:[33.77,-118.19],items:[{t:'AWE USA 2026 · Poster Presenter · Jun 2026',u:'https://www.awexr.com/'}]},
-    {c:'Boston, MA',ll:[42.3601,-71.0589],items:[{t:'Northeastern COE PhD Research Expo · Poster · Feb 2026',u:'https://coe.northeastern.edu/event/coe-phd-research-expo-3/'},{t:'FYEE 2024 · Presenter · Jun 2024',u:''}]},
-    {c:'Montpelier, VT',ll:[44.2601,-72.5754],items:[{t:'Vermont Society of Engineers 112th Annual Meeting · Presenter · May 2025',u:''}]},
-    {c:'Charlotte, NC',ll:[35.2271,-80.8431],items:[{t:'IEEE-Eta Kappa Nu Student Leadership Conference · Attendee · Nov 2024',u:''}]},
-    {c:'Amherst, MA',ll:[42.3732,-72.5199],items:[{t:'AESH Conference · Presenter · Oct 2024',u:''}]},
-    {c:'Barre, VT',ll:[44.1970,-72.5020],items:[{t:'Vermont AOT Research and Innovation Symposium · Poster · Sep 2024',u:''}]},
-    {c:'Northfield, VT',ll:[44.1456,-72.6573],items:[{t:'AI Colloquium (NUARI) · Presenter · Aug 2024',u:''},{t:'CyRUP Conference · Presenter · Feb 2024',u:''}]},
-    {c:'Worcester, MA',ll:[42.2626,-71.8023],items:[{t:'Human-Centered Immersive Perception Evaluation Workshop (WPI) · Attendee · Jul 2026',u:''},{t:'MassDOT Transportation Innovation Conference · Poster · May 2024',u:''},{t:'NEUTC Symposium · Attendee · May 2024',u:''}]}
-  ];
-  const map=L.map('confmap',{scrollWheelZoom:false});
-  const light='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-  const dark='https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-  const isDark=()=>document.documentElement.getAttribute('data-theme')==='dark';
-  const layer=L.tileLayer(isDark()?dark:light,{subdomains:'abcd',maxZoom:19,attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(map);
-  window.__setMapTheme=d=>layer.setUrl(d?dark:light);
-  const accent=(getComputedStyle(document.documentElement).getPropertyValue('--link')||'#0b5ed7').trim();
-  const bounds=[];
-  places.forEach(p=>{
-    const lines=p.items.map(it=>it.u?('<a href="'+it.u+'" target="_blank">'+it.t+'</a>'):it.t).join('<br>');
-    L.marker(p.ll,{icon:L.divIcon({className:'pin-wrap',html:'<div class="pin-dot"></div>',iconSize:[14,14],iconAnchor:[7,7]})}).addTo(map)
-      .bindPopup('<b>'+p.c+'</b><br>'+lines);
-    bounds.push(p.ll);
-  });
-  map.fitBounds(bounds,{padding:[30,30]});
-  setTimeout(()=>map.invalidateSize(),250);
-  // pins drop in when the section scrolls into view
-  const csec=document.getElementById('conferences');
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function dropPins(){document.querySelectorAll('.pin-dot').forEach((d,i)=>{d.style.animationDelay=reduce?'0ms':(i*120+'ms');d.classList.add('go');});}
-  if('IntersectionObserver' in window&&csec&&!reduce){
-    const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){dropPins();io2.disconnect();}})},{threshold:.15});
-    io2.observe(csec);
-  }else dropPins();
-})();
-
-// hero typing effect
-(function(){
-  const el=document.getElementById('typed');if(!el)return;
-  const words=['wearable computing','wireless sensing','low-power eye tracking','spatial intelligence','XR systems'];
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-    el.textContent='wearable computing, wireless sensing, and spatial intelligence';
-    document.querySelector('.caret')&&document.querySelector('.caret').remove();
-    return;
-  }
-  let w=0,i=0,del=false;
-  (function tick(){
-    const word=words[w];
-    el.textContent=word.slice(0,i);
-    if(!del&&i<word.length){i++;setTimeout(tick,70);}
-    else if(!del){del=true;setTimeout(tick,1700);}
-    else if(i>0){i--;setTimeout(tick,36);}
-    else{del=false;w=(w+1)%words.length;setTimeout(tick,300);}
-  })();
-})();
-
-// gaze-tracking easter egg (click the profile photo)
-(function(){
-  if(!matchMedia('(pointer:fine)').matches)return;
-  const photo=document.querySelector('.head-photo img');if(!photo)return;
-  const dot=document.createElement('div');dot.id='gaze';document.body.appendChild(dot);
-  const toast=document.createElement('div');toast.id='toast';document.body.appendChild(toast);
-  let on=false,mx=innerWidth/2,my=innerHeight/2,x=mx,y=my,raf,tt;
-  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-  function loop(){x+=(mx-x)*.1;y+=(my-y)*.1;dot.style.left=x+'px';dot.style.top=y+'px';raf=requestAnimationFrame(loop);}
-  function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),2200);}
-  photo.style.cursor='pointer';photo.title='Click me';
-  photo.addEventListener('click',()=>{
-    on=!on;dot.classList.toggle('on',on);
-    if(on){x=mx;y=my;loop();say('Gaze tracking on 👁️');}
-    else{cancelAnimationFrame(raf);say('Gaze tracking off');}
-  });
-})();
-
-// header live canvas (drifting sensor network)
-(function(){
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const cv=document.getElementById('headfx');if(!cv)return;
-  const ctx=cv.getContext('2d');const head=cv.parentElement;
-  let W,H,pts=[],visible=true,rgb=[11,94,215],tick=0;
-  function hex2rgb(h){h=h.replace('#','');if(h.length===3)h=h.split('').map(x=>x+x).join('');const n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255];}
-  function setColor(){try{rgb=hex2rgb(getComputedStyle(document.documentElement).getPropertyValue('--link').trim());}catch(e){}}
-  setColor();
-  const tb=document.getElementById('themeBtn');tb&&tb.addEventListener('click',()=>setTimeout(setColor,60));
-  function resize(){W=cv.width=head.offsetWidth;H=cv.height=head.offsetHeight;
-    pts=Array.from({length:Math.max(14,Math.floor(W/55))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.6+.8}));}
-  resize();addEventListener('resize',resize);
-  new IntersectionObserver(es=>{visible=es[0].isIntersecting}).observe(head);
-  (function frame(){
-    requestAnimationFrame(frame);
-    if(!visible)return;
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fillStyle='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+',.33)';ctx.fill();});
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);
-      if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
-        ctx.strokeStyle='rgba('+rgb[0]+','+rgb[1]+','+rgb[2]+','+((1-d/110)*.13).toFixed(3)+')';ctx.lineWidth=.6;ctx.stroke();}}
-  })();
-})();
-</script>
+<footer><div class="footer-main"><div><h2>Let’s compare notes.</h2><p>Interested in wearable computing or wireless sensing?<br/>I’m always open to research collaborations.</p><a class="contact-link" href="mailto:khalaf.m@northeastern.edu">khalaf.m@northeastern.edu <span aria-hidden="true">↗</span></a></div><a class="text-link" href="#top">Back to top ↑</a></div><div class="footer-bottom"><span>Majd Khalaf</span><a href="https://sinrg.org/" rel="noopener noreferrer" target="_blank">SINRG, Northeastern University ↗</a></div></footer>
+<dialog aria-label="Enlarged research image" id="lightbox"><button aria-label="Close image" class="lb-close" type="button">Close ×</button><img alt=""/><p id="image-caption"></p></dialog><p aria-live="polite" class="feedback" id="feedback" role="status"></p>
 </body>
 </html>
