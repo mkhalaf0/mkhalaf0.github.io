@@ -25,7 +25,7 @@ Open `http://localhost:4173`.
 
 The page follows the system color preference until a visitor chooses a theme. CSS and JavaScript animations respect reduced motion. Native disclosures keep the long archive readable even without JavaScript.
 
-The June 2026 "Now" update is archived. Publications reflect the October 2026 résumé, with the accepted CapGaze title and four authors confirmed from the attached manuscript. Under-review entries use broad topic labels and omit identifying metadata and materials. Do not upload the private résumé or review manuscripts.
+The "Now" section shows the November 2026 update; the June 2026 update is archived below it. Content reflects the November 2026 résumé (`Resume_Khalaf_Majd_11_09_2026.pdf`, linked as the CV): the MobiCom 2026 paper and the Drakon work-in-progress paper are published, and CapGaze is accepted to ACM SenSys 2027. The CapGaze title and four authors still follow the author-provided manuscript. Under-review entries use broad topic labels and omit identifying metadata and materials. Do not upload review manuscripts.
 
 The interactive map uses standard OpenStreetMap tiles with visible attribution and normal browser caching. It requests tiles when the map enters the viewport. The conference list remains available if the map cannot load. See the [tile usage policy](https://operations.osmfoundation.org/policies/tiles/).
 

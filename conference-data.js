@@ -1,4 +1,5 @@
 window.conferencePlaces = [
+    {c:'Austin, TX',ll:[30.2672,-97.7431],items:[{t:'ACM MobiCom 2026 · Paper Presenter · Oct 2026',u:'https://sigmobile.org/mobicom/2026/'}]},
     {c:'Long Beach, CA',ll:[33.77,-118.19],items:[{t:'AWE USA 2026 · Poster Presenter · Jun 2026',u:'https://www.awexr.com/'}]},
     {c:'Boston, MA',ll:[42.3601,-71.0589],items:[{t:'Northeastern COE PhD Research Expo · Poster · Feb 2026',u:'https://coe.northeastern.edu/event/coe-phd-research-expo-3/'},{t:'FYEE 2024 · Presenter · Jun 2024',u:''}]},
     {c:'Montpelier, VT',ll:[44.2601,-72.5754],items:[{t:'Vermont Society of Engineers 112th Annual Meeting · Presenter · May 2025',u:''}]},
