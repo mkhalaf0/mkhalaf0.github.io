@@ -1,6 +1,7 @@
 # Publication figure sources
 
 - mobicom-testbed.png: Figure 2 of the author-provided accepted MobiCom 2026 manuscript, DOI 10.1145/3795866.3844477 (CC BY 4.0).
+- drakon-prototype.png: Figure 2 of the author-provided MobiCom 2026 work-in-progress paper, DOI 10.1145/3795866.3844783 (CC BY 4.0).
 - capgaze-sensing.png: Figure 1 of the author-provided accepted CapGaze manuscript; acceptance and four-author version confirmed by the author.
 - student-reflections-opening.png: Opening page excerpt, https://nemo.asee.org/public/conferences/365/papers/46681/download (© ASEE 2025).
 - survey-wordclouds.png: Figure 2, https://peer.asee.org/48593.pdf (© ASEE 2024).
